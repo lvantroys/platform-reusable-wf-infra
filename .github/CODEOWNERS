@@ -1,0 +1,6 @@
+# High-trust repo: require platform team review for any changes.
+* @lvantroys
+
+# Extra explicit ownership for workflow files
+.github/workflows/ @lvantroys
+.github/actions/ @lvantroys

@@ -1,0 +1,23 @@
+
+---
+
+## `.gitignore`
+
+```gitignore
+# Reusable workflow repo typically contains no generated artifacts,
+# but keep common noise out of git.
+
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# (No terraform state should ever exist here, but ignore defensively)
+.terraform/
+*.tfstate
+*.tfstate.*
