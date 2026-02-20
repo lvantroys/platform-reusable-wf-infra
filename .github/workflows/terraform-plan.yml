@@ -23,11 +23,11 @@ on:
         description: "AWS IAM role ARN to assume via OIDC (plan role)."
         required: true
         type: string
-      tfstate_bucket:
+      state_bucket_name:
         description: "Terraform remote state bucket name."
         required: true
         type: string
-      tfstate_kms_key_arn:
+      state_kms_key_arn:
         description: "KMS key ARN used for SSE-KMS encryption of state objects."
         required: true
         type: string
@@ -98,11 +98,11 @@ jobs:
         working-directory: ${{ inputs.stack_path }}
         run: |
           cat > backend.hcl <<EOF
-          bucket       = "${{ inputs.tfstate_bucket }}"
+          bucket       = "${{ inputs.state_bucket_name }}"
           key          = "${{ inputs.state_key }}"
           region       = "${{ inputs.aws_region }}"
           encrypt      = true
-          kms_key_id   = "${{ inputs.tfstate_kms_key_arn }}"
+          kms_key_id   = "${{ inputs.state_kms_key_arn }}"
           use_lockfile = true
           EOF
 
