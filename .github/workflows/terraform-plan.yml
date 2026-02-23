@@ -130,7 +130,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-
+          
+          pwd
+          ls -la
           # Build optional -var-file args
           VAR_ARGS=()
           if [[ -n "${{ inputs.var_files }}" ]]; then
