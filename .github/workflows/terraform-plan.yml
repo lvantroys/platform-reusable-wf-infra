@@ -167,10 +167,18 @@ jobs:
 
           terraform show -no-color tfplan > tfplan.txt
 
+      - name: Build artifact name
+        id: artifact
+        shell: bash
+        run: |
+          safe_stack="${{ inputs.stack_path }}"
+          safe_stack="${safe_stack//\//-}"   # replace / with -
+          echo "name=tfplan-${GITHUB_REPOSITORY##*/}-${{ inputs.environment }}-${safe_stack}" >> "$GITHUB_OUTPUT"
+
       - name: Upload plan artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: tfplan-${{ github.event.repository.name }}-${{ inputs.environment }}-${{ inputs.stack_path }}
+          name: ${{ steps.artifact.outputs.name }}
           path: |
             ${{ inputs.stack_path }}/tfplan
             ${{ inputs.stack_path }}/tfplan.txt
