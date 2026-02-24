@@ -123,7 +123,7 @@ jobs:
           if [[ -n "${{ inputs.var_files }}" ]]; then
             while IFS= read -r f; do
               [[ -z "$f" ]] && continue
-              VAR_ARGS+=("-var-file=$GITHUB_WORKSPACE/$f")
+              VAR_ARGS+=("-var-file=$PWD/$f")
             done <<< "${{ inputs.var_files }}"
           fi
 
