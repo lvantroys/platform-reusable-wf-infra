@@ -69,8 +69,8 @@ jobs:
       contents: read
 
     steps:
-      - name: Guard: require main branch (optional)
-        if: inputs.require_main_branch && github.ref != 'refs/heads/main'
+      - name: "Guard: require main branch (optional)"
+        if: ${{ inputs.require_main_branch && github.ref != 'refs/heads/main' }}
         run: |
           echo "Apply restricted to refs/heads/main. Current ref: $GITHUB_REF"
           exit 1
